@@ -10,7 +10,6 @@ public class User
     public string Email { get; set; } = string.Empty;
     public string Password  { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; } 
-
     public List<Tasks> Tasks {get; set;} = new List<Tasks>();
     
 }

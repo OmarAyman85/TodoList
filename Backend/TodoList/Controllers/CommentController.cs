@@ -15,7 +15,7 @@ public class CommentController : ControllerBase
     {
         _CommentRepo = CommentRepo;
     }
-//--------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -23,16 +23,17 @@ public class CommentController : ControllerBase
         var commentsDto = comments.Select(s => s.ToCommentDto());
         return Ok(commentsDto);
     }
-//--------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById([FromRoute] int id)
     {
         var comment = await _CommentRepo.GetByIdAsync(id);
-        if(comment == null){
+        if (comment == null)
+        {
             return NotFound();
         }
         return Ok(comment.ToCommentDto());
     }
-//--------------------------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------
 
 }

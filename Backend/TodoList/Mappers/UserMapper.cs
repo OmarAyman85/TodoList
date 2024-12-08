@@ -18,4 +18,14 @@ public static class UserMapper
         Tasks = UserModel.Tasks.Select(c => c.ToTasksDto()).ToList()
         };
     }
+
+    public static User FromUserDto(this UserDto userDto){
+        return new User{
+            UserID = userDto.UserID,
+            Username = userDto.Username,
+            Email = userDto.Email,
+            Password = userDto.Password,
+            CreatedAt = userDto.CreatedAt,
+        };
+    }
 }

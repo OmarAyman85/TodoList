@@ -19,7 +19,8 @@ public static class TasksMapper
             UserID = TasksModel.UserID,
             CreatedAt = TasksModel.CreatedAt,
             UpdatedAt = TasksModel.UpdatedAt,
-            CompletedAt = TasksModel.CompletedAt
+            CompletedAt = TasksModel.CompletedAt,
+            Comments = TasksModel.Comments.Select(c => c.ToCommentDto()).ToList()
         };
     }
 }

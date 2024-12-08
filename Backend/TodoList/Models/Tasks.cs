@@ -14,5 +14,5 @@ public class Tasks
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
     public DateTime CompletedAt { get; set; } = DateTime.Now;
-    
+    public List<Comment> Comments {get; set;} = new List<Comment>();
 }

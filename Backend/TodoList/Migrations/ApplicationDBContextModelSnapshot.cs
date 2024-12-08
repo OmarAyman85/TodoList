@@ -37,13 +37,15 @@ namespace TodoList.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("TaskID")
+                    b.Property<int>("TasksID")
                         .HasColumnType("int");
 
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");
+
+                    b.HasIndex("TasksID");
 
                     b.ToTable("Comment");
                 });
@@ -89,6 +91,8 @@ namespace TodoList.Migrations
 
                     b.HasKey("TasksID");
 
+                    b.HasIndex("UserID");
+
                     b.ToTable("Tasks");
                 });
 
@@ -118,6 +122,34 @@ namespace TodoList.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("TodoList.Models.Comment", b =>
+                {
+                    b.HasOne("TodoList.Models.Tasks", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("TasksID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TodoList.Models.Tasks", b =>
+                {
+                    b.HasOne("TodoList.Models.User", null)
+                        .WithMany("Tasks")
+                        .HasForeignKey("UserID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TodoList.Models.Tasks", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("TodoList.Models.User", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

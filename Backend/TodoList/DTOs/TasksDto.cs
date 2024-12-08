@@ -1,4 +1,6 @@
 using System;
+using TodoList.DTOs.comment;
+using TodoList.Models;
 
 namespace TodoList.DTOs.Tasks;
 
@@ -14,4 +16,5 @@ public class TasksDto
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
     public DateTime CompletedAt { get; set; } = DateTime.Now;
+    public List<CommentDto> Comments {get; set;}
 }

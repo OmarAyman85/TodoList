@@ -15,11 +15,11 @@ public class TasksRepository : ITasksRepository
     }
     public async Task<List<Tasks>> GetAllAsync()
     {
-        return await _DbContext.Tasks.ToListAsync();
+        return await _DbContext.Tasks.Include(c => c.Comments).ToListAsync();
     }
 
     public async Task<Tasks?> GetByIdAsync(int id)
     {
-        return await _DbContext.Tasks.FindAsync(id);
+        return await _DbContext.Tasks.Include(c => c.Comments).FirstOrDefaultAsync(i => i.TasksID == id);
     }
 }

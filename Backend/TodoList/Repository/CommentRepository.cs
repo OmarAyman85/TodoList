@@ -20,6 +20,6 @@ public class CommentRepository : ICommentRepository
 
     public async Task<Comment?> GetByIdAsync(int id)
     {
-        return await _DbContext.Comment.FindAsync(id);
+        return await _DbContext.Comment.FirstOrDefaultAsync(i => i.CommentID == id);
     }
 }

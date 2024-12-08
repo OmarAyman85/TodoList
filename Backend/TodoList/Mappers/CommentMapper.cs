@@ -10,7 +10,7 @@ public static class CommentMapper
     {
         return new CommentDto{
             CommentID = CommentModel.CommentID,
-            TaskID = CommentModel.TaskID,
+            TasksID = CommentModel.TasksID,
             UserID = CommentModel.UserID,
             Content = CommentModel.Content,
             CreatedAt = CommentModel.CreatedAt

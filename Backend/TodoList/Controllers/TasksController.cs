@@ -14,7 +14,7 @@ public class TasksController : ControllerBase
     {
         _TasksRepo = TasksRepo;
     }
-
+    //--------------------------------------------------------------------------------------
     [HttpGet]
     public async Task<IActionResult> GetAll()
     {
@@ -22,7 +22,7 @@ public class TasksController : ControllerBase
         var tasksDto = tasks.Select(s => s.ToTasksDto());
         return Ok(tasksDto);
     }
-    
+    //--------------------------------------------------------------------------------------    
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(int id)
     {
@@ -33,5 +33,6 @@ public class TasksController : ControllerBase
         }
         return Ok(tasks.ToTasksDto());
     }
+    //--------------------------------------------------------------------------------------
 
 }
