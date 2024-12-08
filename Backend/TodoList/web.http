@@ -1,2 +1,8 @@
 ###
 GET http://localhost:5139/TodoList/Tasks
+
+###
+GET http://localhost:5139/TodoList/Users
+
+###
+GET http://localhost:5139/TodoList/Comments

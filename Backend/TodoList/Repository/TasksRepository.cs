@@ -7,7 +7,8 @@ using TodoList.Models;
 namespace TodoList.Repository;
 
 public class TasksRepository : ITasksRepository
-{   private readonly ApplicationDbContext _DbContext;
+{   
+    private readonly ApplicationDbContext _DbContext;
     public TasksRepository(ApplicationDbContext DbContext)
     {
         _DbContext = DbContext;
