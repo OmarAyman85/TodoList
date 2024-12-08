@@ -1,0 +1,46 @@
+
+
+//*******************************
+//CRUD OPERATION ON USERS TABLE**
+//*******************************
+###
+Get http://localhost:5139/TodoList/Users
+
+###
+Get http://localhost:5139/TodoList/Users/2
+
+###
+Post http://localhost:5139/TodoList/Users
+
+###
+Put http://localhost:5139/TodoList/Users/4
+
+###
+DELETE http://localhost:5139/TodoList/Users/4
+
+//*******************************
+//CRUD OPERATION ON TASKS TABLE**
+//*******************************
+###
+Get http://localhost:5139/TodoList/Tasks
+
+###
+Get http://localhost:5139/TodoList/Tasks/3
+
+###
+Post http://localhost:5139/TodoList/Tasks/2
+
+###
+Put http://localhost:5139/TodoList/Tasks/3
+
+###
+DELETE http://localhost:5139/TodoList/Tasks/3
+
+//*********************************
+//CRUD OPERATION ON COMMENT TABLE**
+//*********************************
+###
+Get http://localhost:5139/TodoList/Comments
+
+###
+Get http://localhost:5139/TodoList/Comments/5
