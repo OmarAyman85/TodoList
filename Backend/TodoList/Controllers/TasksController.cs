@@ -22,6 +22,16 @@ public class TasksController : ControllerBase
         var tasksDto = tasks.Select(s => s.ToTasksDto());
         return Ok(tasksDto);
     }
-
+    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var tasks = await _TasksRepo.GetByIdAsync(id);
+        if (tasks == null)
+        {
+            return NotFound();
+        }
+        return Ok(tasks.ToTasksDto());
+    }
 
 }

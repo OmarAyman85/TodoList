@@ -22,4 +22,16 @@ public class Usercontroller : ControllerBase
         var userDto = users.Select(s => s.ToUserDto());
         return Ok(userDto);
     }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] int id)
+    {
+        var user = await _UserRepo.GetByIdAsync(id);
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok(user);
+
+    }
 }

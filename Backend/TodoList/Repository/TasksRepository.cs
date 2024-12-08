@@ -17,4 +17,9 @@ public class TasksRepository : ITasksRepository
     {
         return await _DbContext.Tasks.ToListAsync();
     }
+
+    public async Task<Tasks?> GetByIdAsync(int id)
+    {
+        return await _DbContext.Tasks.FindAsync(id);
+    }
 }

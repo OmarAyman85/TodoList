@@ -14,7 +14,8 @@ public static class UserMapper
         Username = UserModel.Username,
         Email = UserModel.Email,
         Password = UserModel.Password,
-        CreatedAt = UserModel.CreatedAt
+        CreatedAt = UserModel.CreatedAt,
+        Tasks = UserModel.Tasks.Select(c => c.ToTasksDto()).ToList()
         };
     }
 }
