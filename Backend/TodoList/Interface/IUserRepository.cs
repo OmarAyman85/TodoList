@@ -2,7 +2,7 @@ using System;
 
 namespace TodoList.Interface;
 
-public interface ICommentInterface
+public interface IUserRepository
 {
 
 }

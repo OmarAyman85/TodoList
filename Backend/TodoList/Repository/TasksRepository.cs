@@ -6,7 +6,7 @@ using TodoList.Models;
 
 namespace TodoList.Repository;
 
-public class TasksRepository : ITasksInterface
+public class TasksRepository : ITasksRepository
 {   private readonly ApplicationDbContext _DbContext;
     public TasksRepository(ApplicationDbContext DbContext)
     {

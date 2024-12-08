@@ -3,7 +3,7 @@ using TodoList.Interface;
 
 namespace TodoList.Repository;
 
-public class UserRepository : IUserInterface
+public class UserRepository : IUserRepository
 {
 
 }

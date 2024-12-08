@@ -3,7 +3,7 @@ using TodoList.Models;
 
 namespace TodoList.Interface;
 
-public interface ITasksInterface
+public interface ITasksRepository
 {
     Task<List<Tasks>> GetAllAsync();
 }

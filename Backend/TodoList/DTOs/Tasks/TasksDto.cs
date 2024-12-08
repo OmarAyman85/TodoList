@@ -1,8 +1,8 @@
 using System;
 
-namespace TodoList.Models;
+namespace TodoList.DTOs.Tasks;
 
-public class Tasks
+public class TasksDto
 {
     public int TasksID { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -14,5 +14,4 @@ public class Tasks
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public DateTime UpdatedAt { get; set; } = DateTime.Now;
     public DateTime CompletedAt { get; set; } = DateTime.Now;
-    
 }
