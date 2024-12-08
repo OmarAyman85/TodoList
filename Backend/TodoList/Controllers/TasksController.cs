@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using TodoList.DTOs.Tasks;
 using TodoList.Interface;
 using TodoList.Mappers;
 
@@ -10,9 +11,11 @@ namespace TodoList.Controllers;
 public class TasksController : ControllerBase
 {
     private readonly ITasksRepository _TasksRepo;
-    public TasksController(ITasksRepository TasksRepo)
+    private readonly IUserRepository _UserRepo;
+    public TasksController(ITasksRepository TasksRepo, IUserRepository UserRepo)
     {
         _TasksRepo = TasksRepo;
+        _UserRepo = UserRepo;
     }
     //--------------------------------------------------------------------------------------
     [HttpGet]
@@ -34,5 +37,34 @@ public class TasksController : ControllerBase
         return Ok(tasks.ToTasksDto());
     }
     //--------------------------------------------------------------------------------------
-
+    [HttpPost("{UserId}")]
+    public async Task<IActionResult> Create([FromRoute] int UserId, TasksDto tasksDto)
+    {
+        if (!await _UserRepo.UserExist(UserId))
+        {
+            return BadRequest("User does not exist");
+        }
+        var taskModel = tasksDto.FromTasksDto(UserId);
+        await _TasksRepo.CreateAsync(taskModel);
+        return CreatedAtAction(nameof(GetById), new { id = taskModel.TasksID }, taskModel.ToTasksDto());
+    }
+    //--------------------------------------------------------------------------------------
+    [HttpPut]
+    [Route("{id}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] TasksDto taskDto)
+    {
+        var task = await _TasksRepo.UpdateAsync(id, taskDto.FromTasksDto(id));
+        if (task == null) { return NotFound("Task is not found"); }
+        return Ok(task.ToTasksDto());
+    }
+    //--------------------------------------------------------------------------------------
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var taskModel = await _TasksRepo.DeleteAsync(id);
+        if (taskModel == null) { return NotFound(); }
+        return NoContent();
+    }
+    //--------------------------------------------------------------------------------------
 }

@@ -23,4 +23,21 @@ public static class TasksMapper
             Comments = TasksModel.Comments.Select(c => c.ToCommentDto()).ToList()
         };
     }
+
+    public static Tasks FromTasksDto(this TasksDto tasksDto, int UserId)
+    {
+        return new Tasks
+        {
+            TasksID = tasksDto.TasksID,
+            Title = tasksDto.Title,
+            Description = tasksDto.Description,
+            DueDate = tasksDto.DueDate,
+            Priority = tasksDto.Priority,
+            Status = tasksDto.Status,
+            UserID = UserId,
+            CreatedAt = tasksDto.CreatedAt,
+            UpdatedAt = tasksDto.UpdatedAt,
+            CompletedAt = tasksDto.CompletedAt
+        };
+    }
 }

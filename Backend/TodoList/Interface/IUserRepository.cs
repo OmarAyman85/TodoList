@@ -11,4 +11,5 @@ public interface IUserRepository
     Task<User> CreateAsync(User UserModel);
     Task<User?> UpdateAsync (int id, UserDto userDto);
     Task<User?> DeleteAsync(int id);
+    Task<bool> UserExist(int id);
 }

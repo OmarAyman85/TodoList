@@ -52,4 +52,9 @@ public class UserRepository : IUserRepository
         await _DbContext.SaveChangesAsync();
         return UserModel;
     }
+    //----------------------------------------------------------------------------------------------------
+    public Task<bool> UserExist(int id)
+    {
+        return _DbContext.User.AnyAsync(s => s.UserID == id);
+    }
 }
