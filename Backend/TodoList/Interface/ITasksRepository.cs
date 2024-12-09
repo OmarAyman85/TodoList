@@ -11,4 +11,5 @@ public interface ITasksRepository
     Task<Tasks> CreateAsync(Tasks tasksModel);
     Task<Tasks?> UpdateAsync(int id, Tasks tasksModel);
     Task<Tasks?> DeleteAsync(int id);
+    Task<bool> TaskExist(int id);
 }

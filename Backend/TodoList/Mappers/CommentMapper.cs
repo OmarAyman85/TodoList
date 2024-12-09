@@ -16,4 +16,16 @@ public static class CommentMapper
             CreatedAt = CommentModel.CreatedAt
         };
     }
+
+    public static Comment FromCommentDto(this CommentDto commentDto, int tasksID)
+    {
+        return new Comment
+        {
+            CommentID = commentDto.CommentID,
+            TasksID = tasksID,
+            UserID = commentDto.UserID,
+            Content = commentDto.Content,
+            CreatedAt = commentDto.CreatedAt
+        };
+    }
 }
