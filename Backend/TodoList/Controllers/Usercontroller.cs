@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.DTOs.user;
+using TodoList.DTOs.Users;
 using TodoList.Interface;
 using TodoList.Mappers;
 
@@ -36,16 +37,16 @@ public class Usercontroller : ControllerBase
     }
     //--------------------------------------------------------------------------------------
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] UserDto userDto)
+    public async Task<IActionResult> Create([FromBody] CreateUserDto userDto)
     {
-        var userModel = userDto.FromUserDto();
+        var userModel = userDto.FromCreateUserDto();
         await _UserRepo.CreateAsync(userModel);
         return CreatedAtAction(nameof(GetById), new { id = userModel.UserID }, userModel.ToUserDto());
     }
     //--------------------------------------------------------------------------------------
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UserDto userDto)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateUserDto userDto)
     {
         var userModel = await _UserRepo.UpdateAsync(id, userDto);
         if (userModel == null) { return NotFound(); }

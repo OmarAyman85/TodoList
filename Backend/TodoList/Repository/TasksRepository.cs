@@ -41,17 +41,9 @@ public class TasksRepository : ITasksRepository
         {
             return null;
         }
-        existingTask.TasksID = tasksModel.TasksID;
         existingTask.Title = tasksModel.Title;
         existingTask.Description = tasksModel.Description;
-        existingTask.DueDate = tasksModel.DueDate;
         existingTask.Priority = tasksModel.Priority;
-        existingTask.Status = tasksModel.Status;
-        existingTask.UserID = tasksModel.UserID;
-        existingTask.CreatedAt = tasksModel.CreatedAt;
-        existingTask.UpdatedAt = tasksModel.UpdatedAt;
-        existingTask.CompletedAt = tasksModel.CompletedAt;
-        existingTask.Comments = tasksModel.Comments;
         await _DbContext.SaveChangesAsync();
         return existingTask;
     }

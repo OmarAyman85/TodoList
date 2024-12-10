@@ -6,6 +6,7 @@ namespace TodoList.Mappers;
 
 public static class TasksMapper
 {
+    //--------------------------------------------------------------------------------------------
     public static TasksDto ToTasksDto(this Tasks TasksModel)
     {
         return new TasksDto
@@ -23,21 +24,27 @@ public static class TasksMapper
             Comments = TasksModel.Comments.Select(c => c.ToCommentDto()).ToList()
         };
     }
-
-    public static Tasks FromTasksDto(this TasksDto tasksDto, int UserId)
+    //--------------------------------------------------------------------------------------------
+    public static Tasks FromCreateTasksDto(this CreateTaskDto tasksDto, int UserId)
     {
         return new Tasks
         {
-            TasksID = tasksDto.TasksID,
+            UserID = UserId,
             Title = tasksDto.Title,
             Description = tasksDto.Description,
-            DueDate = tasksDto.DueDate,
             Priority = tasksDto.Priority,
-            Status = tasksDto.Status,
-            UserID = UserId,
-            CreatedAt = tasksDto.CreatedAt,
-            UpdatedAt = tasksDto.UpdatedAt,
-            CompletedAt = tasksDto.CompletedAt
+            Status = tasksDto.Status
+        };
+    }
+    //--------------------------------------------------------------------------------------------
+    public static Tasks FromUpdateTasksDto(this UpdateTaskDto tasksDto)
+    {
+        return new Tasks
+        {
+            Title = tasksDto.Title,
+            Description = tasksDto.Description,
+            Priority = tasksDto.Priority,
+            Status = tasksDto.Status
         };
     }
 }

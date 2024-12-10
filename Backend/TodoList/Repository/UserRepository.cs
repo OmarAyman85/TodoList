@@ -2,6 +2,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using TodoList.ApplicationDBContext;
 using TodoList.DTOs.user;
+using TodoList.DTOs.Users;
 using TodoList.Interface;
 using TodoList.Models;
 
@@ -31,15 +32,13 @@ public class UserRepository : IUserRepository
         return UserModel;
     }
     //----------------------------------------------------------------------------------------------------
-    public async Task<User?> UpdateAsync(int id, UserDto UserDto)
+    public async Task<User?> UpdateAsync(int id, UpdateUserDto UserDto)
     {
         var existingUser = await _DbContext.User.FirstOrDefaultAsync(x => x.UserID == id);
         if (existingUser == null) { return null; }
-        existingUser.UserID = UserDto.UserID;
         existingUser.Username = UserDto.Username;
         existingUser.Email = UserDto.Email;
         existingUser.Password = UserDto.Password;
-        existingUser.CreatedAt = UserDto.CreatedAt;
         await _DbContext.SaveChangesAsync();
         return existingUser;
     }
