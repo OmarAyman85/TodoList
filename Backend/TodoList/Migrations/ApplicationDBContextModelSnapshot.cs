@@ -40,9 +40,6 @@ namespace TodoList.Migrations
                     b.Property<int>("TasksID")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("CommentID");
 
                     b.HasIndex("TasksID");

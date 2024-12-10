@@ -39,11 +39,7 @@ public class CommentRepository : ICommentRepository
     {
         var existingComment = await _DbContext.Comment.FindAsync(id);
         if (existingComment == null) { return null; }
-        existingComment.CommentID = commentModel.CommentID;
-        existingComment.UserID = commentModel.UserID;
-        existingComment.TasksID = commentModel.TasksID;
         existingComment.Content = commentModel.Content;
-        existingComment.CreatedAt = commentModel.CreatedAt;
         await _DbContext.SaveChangesAsync();
         return existingComment;
     }

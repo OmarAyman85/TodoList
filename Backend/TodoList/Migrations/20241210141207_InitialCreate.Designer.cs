@@ -12,8 +12,8 @@ using TodoList.ApplicationDBContext;
 namespace TodoList.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241208180638_init")]
-    partial class init
+    [Migration("20241210141207_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,9 +41,6 @@ namespace TodoList.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("TasksID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserID")
                         .HasColumnType("int");
 
                     b.HasKey("CommentID");

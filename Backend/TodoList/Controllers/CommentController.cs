@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
 using TodoList.DTOs.comment;
+using TodoList.DTOs.Comment;
 using TodoList.Interface;
 using TodoList.Mappers;
 
@@ -39,23 +40,20 @@ public class CommentController : ControllerBase
     }
     //--------------------------------------------------------------------------------------
     [HttpPost("{TasksId}")]
-    public async Task<IActionResult> Create([FromRoute] int TasksId, CommentDto commentDto)
+    public async Task<IActionResult> Create([FromRoute] int TasksId, CreateCommentDto commentDto)
     {
-        if (!await _TasksRepo.TaskExist(TasksId))
-        {
-            return BadRequest("User does not exist");
-        }
-        var commentModel = commentDto.FromCommentDto(TasksId);
+        if (!await _TasksRepo.TaskExist(TasksId)) { return BadRequest("Task does not exist"); }
+        var commentModel = commentDto.FromCreateCommentDto(TasksId);
         await _CommentRepo.CreateAsync(commentModel);
         return CreatedAtAction(nameof(GetById), new { id = commentModel.TasksID }, commentModel.ToCommentDto());
     }
     //--------------------------------------------------------------------------------------
     [HttpPut]
     [Route("{id}")]
-    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] CommentDto commentDto)
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentDto commentDto)
     {
-        var commentModel = await _CommentRepo.UpdateAsync(id, commentDto.FromCommentDto(id));
-        if (commentModel == null) { return NotFound(); }
+        var commentModel = await _CommentRepo.UpdateAsync(id, commentDto.FromUpdateCommentDto());
+        if (commentModel == null) { return NotFound("Comment is not found"); }
         return Ok(commentModel.ToCommentDto());
     }
     //--------------------------------------------------------------------------------------
