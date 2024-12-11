@@ -36,9 +36,9 @@ public class UserRepository : IUserRepository
     {
         var existingUser = await _DbContext.User.FirstOrDefaultAsync(x => x.UserID == id);
         if (existingUser == null) { return null; }
-        existingUser.Username = UserDto.Username;
-        existingUser.Email = UserDto.Email;
-        existingUser.Password = UserDto.Password;
+        existingUser.UUsername = UserDto.Username;
+        existingUser.EEmail = UserDto.Email;
+        existingUser.PPassword = UserDto.Password;
         await _DbContext.SaveChangesAsync();
         return existingUser;
     }

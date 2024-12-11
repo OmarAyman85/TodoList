@@ -14,9 +14,9 @@ public static class UserMapper
         return new UserDto
         {
             UserID = UserModel.UserID,
-            Username = UserModel.Username,
-            Email = UserModel.Email,
-            Password = UserModel.Password,
+            Username = UserModel.UUsername,
+            Email = UserModel.EEmail,
+            Password = UserModel.PPassword,
             CreatedAt = UserModel.CreatedAt,
             Tasks = UserModel.Tasks.Select(c => c.ToTasksDto()).ToList()
         };
@@ -27,9 +27,9 @@ public static class UserMapper
         return new User
         {
             UserID = userDto.UserID,
-            Username = userDto.Username,
-            Email = userDto.Email,
-            Password = userDto.Password,
+            UUsername = userDto.Username,
+            EEmail = userDto.Email,
+            PPassword = userDto.Password,
             CreatedAt = userDto.CreatedAt,
         };
     }
@@ -38,9 +38,9 @@ public static class UserMapper
     {
         return new User
         {
-            Username = userDto.Username,
-            Email = userDto.Email,
-            Password = userDto.Password,
+            UUsername = userDto.Username,
+            EEmail = userDto.Email,
+            PPassword = userDto.Password,
         };
     }
     //--------------------------------------------------------------------------------------------
@@ -48,9 +48,9 @@ public static class UserMapper
     {
         return new User
         {
-            Username = userDto.Username,
-            Email = userDto.Email,
-            Password = userDto.Password,
+            UUsername = userDto.Username,
+            EEmail = userDto.Email,
+            PPassword = userDto.Password,
         };
     }
 }
